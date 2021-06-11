@@ -13,10 +13,10 @@
     <nav>
     <ul>
     <li><img src="img/park.png" alt="no favicon image found"></li>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="customer_login.php">Customer</a></li>
-    <li><a href="admin_login.php">Admin</a></li>
-    <li><a target="_blank" href="https://github.com/7abhisheknn/Parking_Management_System">About Us</a></li>
+    <li><a class="hov" href="index.php">Home</a></li>
+    <li><a class="hov" href="customer_login.php">Customer</a></li>
+    <li><a class="hov" href="admin_login.php">Admin</a></li>
+    <li><a class="hov" target="_blank" href="https://github.com/7abhisheknn/Parking_Management_System">About Us</a></li>
     </ul>
     </nav>
     

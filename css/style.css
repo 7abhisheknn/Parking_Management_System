@@ -40,8 +40,9 @@ nav ul li a{
     background-color: rgb(39, 37, 37);
     font-size: 1.3rem;
 }
-nav ul li a:hover{
-    background-color: blanchedalmond;
+.hov:hover{
+    border: 2px solid red;
+    background-color: rgb(247, 224, 191);
     color: red;
 }
 section{
@@ -50,18 +51,49 @@ section{
 footer{
     display: footer;
     text-align: center;
+    font-size: 1.2rem;
+
 }
-nav, section, footer{
+nav, footer{
     background-color: rgb(39, 37, 37);
 }
-/* 
-#index_places{
-    text-align: center;
-} */
-/* .index_place{
-    align-items: center;
-} */
-.index_places_table{
+.error{
+    color: yellow;
+    background-color: red;
+    font-weight: bolder;
+}
+
+.centre_t{
     margin: auto;
     text-align: center;
 }
+
+.form_grid{
+    display: grid;
+    justify-content: center;
+    grid-gap: 0.5rem;
+}
+.form_grid h1,h3{
+    background-color: rgb(39, 37, 37);
+    width: 50vw;
+}
+.form_grid input,.submit_button{
+    border: 0.1px solid rgb(192, 65, 65);
+}
+
+
+.button_div{
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+}
+.submit_button{
+    display: grid;
+    font-size: 1.3rem;
+    background-color: rgb(39, 37, 37);
+    width: 15vw;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+}
+

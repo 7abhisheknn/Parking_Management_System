@@ -11,7 +11,7 @@ mysqli_close($conn);
 <?php include('template/header.php'); ?>
 <section>
 <div id="index_places">
-    <table class="index_places_table">
+    <table class="centre_t">
     <thead>
         <tr>
             <th>Name</th>
@@ -27,7 +27,7 @@ mysqli_close($conn);
     </thead>
     <tbody>
     <?php foreach ($places as $place) {?>
-        <div class="index_place">
+        <div class="centre_t">
         <tr>
             <td><?php echo htmlspecialchars($place['a_company_name']) ; ?></td>
             <td><?php echo htmlspecialchars($place['p_price']) ; ?></td>
