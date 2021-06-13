@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 <?php include('template/header.php'); ?>
 
 <section>
-    <form action="admin_login.php" method="post" class="centre_t form_grid" id="admin_login">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="centre_t form_grid" >
         <h1>Admin Login</h1>
         <h3>Email</h3>
         <input type="text" name="email">
