@@ -15,22 +15,28 @@ if(isset($_POST['submit'])){
     if(empty($_POST['password'])){
         $error['password']='provide password';
     }
-    else{
+    else if (empty($error['email'])){
         $password=$_POST['password'];
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $sql="SELECT a_name,a_id,a_password FROM `admin` WHERE a_email='$email'";
         $result=mysqli_query($conn, $sql);
         $a=mysqli_fetch_assoc($result);
-        print_r($a);
-        echo "hi iam echoing";
-        if ($password==$a['a_password']){
-            session_start();
-            $_SESSION['a_id']=$a['a_id'];
-            $_SESSION['name']=$a['a_name'];
-            header('Location: admin.php');
+
+        if ($a){
+            if ($password==$a['a_password']){
+                session_start();
+                $_SESSION['a_id']=$a['a_id'];
+                $_SESSION['name']=$a['a_name'];
+                header('Location: admin.php');
+            }
+            else{
+                $error['password']='wrong password';
+            }
         }
         else{
-            $error['password']='wrong password';
+            if (empty($error['email'])){
+                $error['email']="wrong email";
+            }
         }
 
     }

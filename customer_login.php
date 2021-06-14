@@ -17,21 +17,29 @@ if(isset($_POST['submit'])){
     if(empty($_POST['password'])){
         $error['password']='provide password';
     }
-    else{
+    else if (empty($error['email'])){
         $password=$_POST['password'];
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $sql="SELECT c_name,c_id,c_password FROM `customer` WHERE c_email='$email'";
 
         $result=mysqli_query($conn, $sql);
         $c=mysqli_fetch_assoc($result);
-        if ($password==$c['c_password']){
-            session_start();
-            $_SESSION['c_id']=$c['c_id'];
-            $_SESSION['name']=$c['c_name'];
-            header('Location: customer.php');
+
+        if ($c){
+            if ($password==$c['c_password']){
+                session_start();
+                $_SESSION['c_id']=$c['c_id'];
+                $_SESSION['name']=$c['c_name'];
+                header('Location: customer.php');
+            }
+            else{
+                $error['password']='wrong password';
+            }
         }
         else{
-            $error['password']='wrong password';
+            if (empty($error['email'])){
+                $error['email']="wrong email";
+            }
         }
 
     }
