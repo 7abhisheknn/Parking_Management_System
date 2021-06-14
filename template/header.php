@@ -1,3 +1,13 @@
+
+<?php
+$name=$_SESSION['name']??'Guest';
+
+if(isset($_GET['LOGOUT'])){
+    session_unset();
+    session_destroy();
+    header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +27,10 @@
     <li><a class="hov" href="customer_login.php">Customer</a></li>
     <li><a class="hov" href="admin_login.php">Admin</a></li>
     <li><a class="hov" target="_blank" href="https://github.com/7abhisheknn/Parking_Management_System">About Us</a></li>
+    <li id="name">Hello <?php echo $name; ?></li>
+    <?php if ($name!="Guest"){ ?>
+    <li><a id="logout" href="<?php echo $_SERVER['PHP_SELF']; ?>?LOGOUT=1">LOGOUT</a></li>
+    <?php } ?>
     </ul>
     </nav>
     

@@ -18,10 +18,15 @@ if(isset($_POST['submit'])){
     else{
         $password=$_POST['password'];
         $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $sql="SELECT a_password FROM `admin` WHERE a_email='$email'";
+        $sql="SELECT a_name,a_id,a_password FROM `admin` WHERE a_email='$email'";
         $result=mysqli_query($conn, $sql);
-        $a_password=mysqli_fetch_assoc($result);
-        if ($password==$a_password['a_password']){
+        $a=mysqli_fetch_assoc($result);
+        print_r($a);
+        echo "hi iam echoing";
+        if ($password==$a['a_password']){
+            session_start();
+            $_SESSION['a_id']=$a['a_id'];
+            $_SESSION['name']=$a['a_name'];
             header('Location: admin.php');
         }
         else{
@@ -48,6 +53,8 @@ if(isset($_POST['submit'])){
             <input class="hov submit_button" type="submit" value="submit" name="submit">
             <a class="hov submit_button" href="admin_create.php" class="submit_button">Create Account</a>
         </div>
+
+
     </form>
 </section>
 

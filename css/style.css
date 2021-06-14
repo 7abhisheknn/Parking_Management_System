@@ -96,4 +96,21 @@ nav, footer{
     text-align: center;
     text-decoration: none;
 }
+#name,#logout{
+    border: 2px solid #86de86;
+    border-radius: 0px;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    font-weight: bolder;
+    background-color: #0d0148;
+    color: #9bf9ed;
+
+}
+#logout:hover{
+    color: red;
+    background-color: white;
+}
+.border_red{
+    border: 2px solid red;
+}
 

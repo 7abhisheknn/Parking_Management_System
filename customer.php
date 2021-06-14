@@ -1,12 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>customer page</h1>
-</body>
-</html>
+<?php
+session_start();
+
+if (empty($_SESSION['c_id'])){
+    header('Location: customer_login.php');
+}
+?>
+
+
+<?php include('template/header.php'); ?>
+<section>
+<h1>customer page</h1>
+<div class="border_red">current parking locations
+
+</div>
+<div class="border_red">previously parked bills
+
+</div>
+
+
+</section>
+<?php include('template/footer.php'); ?>

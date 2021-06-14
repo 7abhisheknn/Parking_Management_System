@@ -10,7 +10,7 @@ mysqli_close($conn);
 
 <?php include('template/header.php'); ?>
 <section>
-<div id="index_places">
+<div>
     <table class="centre_t">
     <thead>
         <tr>
