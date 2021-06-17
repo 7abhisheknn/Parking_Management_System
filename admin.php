@@ -17,10 +17,10 @@ mysqli_close($conn);
 <?php include('template/header.php'); ?>
 <section>
 <h1>admin page</h1>
-<div class="border_red">parking locations
+<div >parking locations
 
 </div>
-<div class="border_red">
+<div >
 <h1>Previous Parking Bills</h1>
 <table class="centre_t">
 <thead>
