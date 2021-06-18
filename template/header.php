@@ -1,7 +1,9 @@
 
 <?php
+/// getting name from session to display in navigation bar
 $name=$_SESSION['name']??'Guest';
 
+/// loging out when clicked on logout in navigation bar
 if(isset($_GET['LOGOUT'])){
     session_unset();
     session_destroy();
@@ -28,8 +30,9 @@ if(isset($_GET['LOGOUT'])){
     <li><a class="hov" href="admin_login.php">Admin</a></li>
     <li><a class="hov" target="_blank" href="https://github.com/7abhisheknn/Parking_Management_System">About Us</a></li>
     <li id="name">Hello <?php echo $name; ?></li>
+<!-- /// displaying logout when user is not guest -->
     <?php if ($name!="Guest"){ ?>
-    <li><a id="logout" href="<?php echo $_SERVER['PHP_SELF']; ?>?LOGOUT=1">LOGOUT</a></li>
+        <li><a id="logout" href="<?php echo $_SERVER['PHP_SELF']; ?>?LOGOUT=1">LOGOUT</a></li>
     <?php } ?>
     </ul>
     </nav>

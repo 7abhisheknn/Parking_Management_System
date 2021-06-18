@@ -1,13 +1,15 @@
 <?php
 include('configuration/database_config.php');
+/// array to keep login errors
 $error = array('Email'=>'','Your_Password'=>'','Retype_Password'=>'','Name'=>'','Company_Name'=>'','Country'=>'','State'=>'','District'=>'','Address'=>'','Pincode'=>'');
 
+/// array to store mysqli_real_escape_string
 $form= array();
 
-
+/// array to keep all form names
 $arr=array('Email','Your_Password','Retype_Password','Name','Company_Name','Country','State','District','Address','Pincode');
 
-
+/// verifying and creating admin if submit is clicked
 if(isset($_POST['submit'])){
     if(empty($_POST['Email'])){
         $error['Email']='provide Email';

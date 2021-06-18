@@ -1,14 +1,16 @@
 <?php
 include('configuration/database_config.php');
+/// checking if customer id is present else redirecting to customer_login
 session_start();
 if (empty($_SESSION['c_id'])){
     header('Location: customer_login.php');
 }
 
+/// if confirm park submit is pressed updating parking,vehicle,bill 
 if(isset($_POST['confirm_park'])){
-    echo "trigered";
     $p_id=mysqli_real_escape_string($conn, $_POST['p_id']);
     $a_id=mysqli_real_escape_string($conn, $_POST['a_id']);
+    $b_price=mysqli_real_escape_string($conn, $_POST['b_price']);
     $from=mysqli_real_escape_string($conn, $_POST['from']);
     $till=mysqli_real_escape_string($conn, $_POST['till']);
     $v_no=mysqli_real_escape_string($conn, $_POST['v_no']);
@@ -17,16 +19,14 @@ if(isset($_POST['confirm_park'])){
     mysqli_query($conn,$sql);
     $sql="INSERT INTO `vehicle` (`v_no`, `c_id`, `v_type`) SELECT '$v_no', '$c_id', 'car' WHERE NOT EXISTS (SELECT * FROM `vehicle` WHERE v_no='$v_no') ";
     mysqli_query($conn,$sql);
-    $sql="INSERT INTO `bill` (p_id,a_id,v_no,b_price,b_from,b_till) VALUES('$p_id','$a_id','$v_no','$from','$till')";
-    if (mysqli_query($conn,$sql)){
-        echo "yes";
-    }
-    else{
-        echo "no";
-    }
+    $sql="INSERT INTO `bill` (p_id,a_id,v_no,b_price,b_from,b_till) VALUES('$p_id','$a_id','$v_no','$b_price','$from','$till')";
+    mysqli_query($conn,$sql);
     $_SESSION['c_p_id']="";
+    unset($_POST);
+    header("Location: ".$_SERVER['PHP_SELF']);
 }
 
+/// if parking id present getting the details of congfirm park location
 $place="";
 if(!empty($_SESSION['c_p_id'])){
     echo $_SESSION['c_p_id'];
@@ -38,7 +38,7 @@ if(!empty($_SESSION['c_p_id'])){
     mysqli_free_result($result);
 }
 
-
+/// getting details of all previous bills for admin
 // $_SESSION['c_id']="";
 $c_id = mysqli_real_escape_string($conn, $_SESSION['c_id']);
 // echo $c_id;
@@ -90,6 +90,7 @@ mysqli_close($conn);
         <td><input type="text" name="v_no" ></td>
         <input type="hidden" name="p_id" value="<?php echo $place['p_id']; ?>">
         <input type="hidden" name="a_id" value="<?php echo $place['a_id']; ?>">
+        <input type="hidden" name="b_price" value="<?php echo $place['p_price']; ?>">
         <td><input type="submit" name="confirm_park" value="confirm_park" ></td>
         </form>
     </tr>

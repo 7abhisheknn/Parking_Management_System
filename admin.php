@@ -1,12 +1,14 @@
 <?php
 include('configuration/database_config.php');
-session_start();
 
+/// checking if admin id is present else redirecting to admin_login
+session_start();
 if (empty($_SESSION['a_id'])){
     header('Location: admin_login.php');
 }
-$a_id = mysqli_real_escape_string($conn, $_SESSION['a_id']);
 
+/// getting details of all previous bills for admin
+$a_id = mysqli_real_escape_string($conn, $_SESSION['a_id']);
 $sql="SELECT b.v_no, b.b_price,b.b_from, b.b_till,c.c_name,c.c_email,c.c_address FROM place as p, admin as a, bill as b, customer as c, vehicle as v WHERE b.p_id=p.p_id AND b.a_id=a.a_id AND b.v_no=v.v_no AND v.c_id=c.c_id AND b.a_id='$a_id'";
 $result=mysqli_query($conn,$sql);
 $bills=mysqli_fetch_all($result,MYSQLI_ASSOC);

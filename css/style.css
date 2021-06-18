@@ -3,7 +3,7 @@
     margin: 0px;
     color: white;
     background-color: black;
-    /* border-radius: 10px; */
+
 }
 #container{
     display: grid;
@@ -80,6 +80,7 @@ nav, footer{
 }
 .form_grid input,.submit_button{
     border: 0.1px solid rgb(192, 65, 65);
+    
 }
 
 

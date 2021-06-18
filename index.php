@@ -1,18 +1,20 @@
 <?php
 include('configuration/database_config.php');
 
+/// if park clicked redirecting to customer_login with parking id
 if(isset($_GET['c_p_id'])){
     session_start();
     $_SESSION['c_p_id']=$_GET['c_p_id'];
     header('Location: customer_login.php');
 }
 
+/// getting places details to display
 $sql='SELECT p.p_id, p.a_id, p.p_price, p.p_from, p.p_till, p.v_no, a.a_email, a.a_name, a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a WHERE p.a_id=a.a_id AND p.v_no IS NULL';
-
 $result=mysqli_query($conn,$sql);
 $places=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
+
 ?>
 
 <?php include('template/header.php'); ?>

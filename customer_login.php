@@ -1,9 +1,9 @@
 <?php
 include('configuration/database_config.php');
+/// array to keep login errors
 $error = array('email'=>'','password'=>'');
 
-
-
+/// verifying login and redirecting to customer.php with parking_id if submit is clicked
 if(isset($_POST['submit'])){
     if(empty($_POST['email'])){
         $error['email']='provide email';
