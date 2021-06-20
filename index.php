@@ -15,6 +15,8 @@ $places=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
 
+/// array to store data heading for in each place
+$place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_district','a_pincode')
 ?>
 
 <?php include('template/header.php'); ?>
@@ -36,13 +38,10 @@ mysqli_close($conn);
 <?php foreach ($places as $place) {?>
     <div class="centre_t">
     <tr>
-        <td><?php echo htmlspecialchars($place['a_company_name']) ; ?></td>
-        <td><?php echo htmlspecialchars($place['a_email']) ; ?></td>
-        <td><?php echo htmlspecialchars($place['p_price']) ; ?></td>
-        <td><?php echo htmlspecialchars($place['a_country']) ; ?></td>
-        <td><?php echo htmlspecialchars($place['a_state']) ; ?></td>
-        <td><?php echo htmlspecialchars($place['a_district']) ; ?></td>
-        <td><?php echo htmlspecialchars($place['a_pincode']) ; ?></td>
+        <?php
+        foreach($place_k as $k){ ?>
+            <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
+        <?php } ?>
         <td><a class="park_here" href="index.php?c_p_id=<?php echo $place['p_id']; ?>">PARK</a></td>
     </tr>
     </div>

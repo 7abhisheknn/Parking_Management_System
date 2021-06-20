@@ -7,7 +7,7 @@ $error = array('Email'=>'','Your_Password'=>'','Retype_Password'=>'','Name'=>'',
 $form= array();
 
 /// array to keep all form names
-$arr=array('Email','Your_Password','Retype_Password','Name','Company_Name','Country','State','District','Address','Pincode');
+$arr=array_keys($error);
 
 /// verifying and creating admin if submit is clicked
 if(isset($_POST['submit'])){

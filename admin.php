@@ -14,6 +14,11 @@ $result=mysqli_query($conn,$sql);
 $bills=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
+
+/// array to store data heading for in each bill
+$bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address');
+
+
 ?>
 
 <?php include('template/header.php'); ?>
@@ -41,14 +46,9 @@ mysqli_close($conn);
 <?php foreach ($bills as $bill) {?>
     <div class="centre_t">
     <tr>
-        <td><?php echo htmlspecialchars($bill['v_no']) ; ?></td>
-        <td><?php echo htmlspecialchars($bill['b_price']) ; ?></td>
-        <td><?php echo htmlspecialchars($bill['b_from']) ; ?></td>
-        <td><?php echo htmlspecialchars($bill['b_till']) ; ?></td>
-        <td><?php echo htmlspecialchars($bill['c_name']) ; ?></td>
-        <td><?php echo htmlspecialchars($bill['c_email']) ; ?></td>
-        <td><?php echo htmlspecialchars($bill['c_address']) ; ?></td>
-
+    <?php foreach($bill_k as $k) { ?>
+        <td class="data"><?php echo htmlspecialchars($bill[$k]) ; ?></td>
+    <?php } ?>
     </tr>
     </div>
 </tbody>

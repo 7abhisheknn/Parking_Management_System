@@ -68,6 +68,9 @@ nav, footer{
     margin: auto;
     text-align: center;
 }
+.data{
+    padding: 0px 2px;
+}
 
 .form_grid{
     display: grid;
