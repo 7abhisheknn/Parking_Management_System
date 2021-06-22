@@ -42,7 +42,7 @@ $place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_dis
         foreach($place_k as $k){ ?>
             <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
         <?php } ?>
-        <td><a class="park_here" href="index.php?c_p_id=<?php echo $place['p_id']; ?>">PARK</a></td>
+        <td><a class="data" href="index.php?c_p_id=<?php echo $place['p_id']; ?>">PARK</a></td>
     </tr>
     </div>
 <?php  }  ?>

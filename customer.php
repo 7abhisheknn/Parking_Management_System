@@ -7,11 +7,14 @@ if (empty($_SESSION['c_id'])){
 }
 $c_id=mysqli_real_escape_string($conn, $_SESSION['c_id']);
 
+
+
 /// if confirm park submit is pressed updating parking,vehicle,bill 
 if(isset($_POST['confirm_park'])){
+    // echo $_POST['confirm_park'];
     $p_id=mysqli_real_escape_string($conn, $_POST['p_id']);
-    $a_id=mysqli_real_escape_string($conn, $_POST['a_id']);
-    $b_price=mysqli_real_escape_string($conn, $_POST['b_price']);
+    // $a_id=mysqli_real_escape_string($conn, $_POST['a_id']);
+    // $b_price=mysqli_real_escape_string($conn, $_POST['b_price']);
     $from=mysqli_real_escape_string($conn, $_POST['from']);
     $till=mysqli_real_escape_string($conn, $_POST['till']);
     $v_no=mysqli_real_escape_string($conn, $_POST['v_no']);
@@ -19,8 +22,8 @@ if(isset($_POST['confirm_park'])){
     mysqli_query($conn,$sql);
     $sql="INSERT INTO `vehicle` (`v_no`, `c_id`, `v_type`) SELECT '$v_no', '$c_id', 'car' WHERE NOT EXISTS (SELECT * FROM `vehicle` WHERE v_no='$v_no') ";
     mysqli_query($conn,$sql);
-    $sql="INSERT INTO `bill` (p_id,a_id,v_no,b_price,b_from,b_till) VALUES('$p_id','$a_id','$v_no','$b_price','$from','$till')";
-    mysqli_query($conn,$sql);
+    // $sql="INSERT INTO `bill` (p_id,a_id,v_no,b_price,b_from,b_till) VALUES('$p_id','$a_id','$v_no','$b_price','$from','$till')";
+    // mysqli_query($conn,$sql);
     $_SESSION['c_p_id']="";
     unset($_POST);
     header("Location: ".$_SERVER['PHP_SELF']);
@@ -29,6 +32,7 @@ if(isset($_POST['confirm_park'])){
 /// if parking id present getting the details of congfirm park location
 $place="";
 if(!empty($_SESSION['c_p_id'])){
+    echo $_SESSION['c_p_id'];
     $p_id = mysqli_real_escape_string($conn, $_SESSION['c_p_id']);
     $sql="SELECT p.p_id, p.a_id, p.p_price, p.p_from, p.p_till, p.v_no, a.a_email, a.a_name, a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a WHERE p.a_id=a.a_id AND p.p_id='$p_id' AND p.v_no IS NULL ";
     // AND p.v_no IS NULL not need 
@@ -38,13 +42,40 @@ if(!empty($_SESSION['c_p_id'])){
 }
 
 /// for displaying current parked locations
-//+ in process 
-$sql="SELECT p.v_no,p.p_from, p.p_till, p.p_price,a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a, customer as c, vehicle as v WHERE p.a_id=a.a_id AND p.v_no=v.v_no AND v.c_id=c.c_id AND c.c_id=$c_id";
+$sql="SELECT p.p_id,p.v_no,p.p_from, p.p_till, p.p_price,a.a_id,a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a, customer as c, vehicle as v WHERE p.a_id=a.a_id AND p.v_no=v.v_no AND v.c_id=c.c_id AND c.c_id=$c_id";
 $result=mysqli_query($conn,$sql);
 $current_places=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
 $c_p_k=array('v_no','p_from','p_till','p_price','a_company_name','a_email','a_country','a_state','a_district','a_address','a_pincode');
 
+///If leave parking place clicked
+if(isset($_GET['LEAVE'])){
+    $p_id=mysqli_real_escape_string($conn, $_GET['LEAVE']);
+    $sql="UPDATE `place` SET v_no=NULL,p_from=NULL,p_till=NULL WHERE p_id='$p_id'; ";
+    mysqli_query($conn,$sql);
+    $a_id="";
+    $v_no="";
+    $b_price="";
+    $b_from="";
+    foreach ($current_places as $place) {
+        if ($place['p_id']==$p_id){
+            $a_id=$place['a_id'];
+            $v_no=$place['v_no'];
+            $b_price=$place['p_price'];
+            $b_from=$place['p_from'];         
+        }
+    }
+    $a_id=mysqli_real_escape_string($conn,$a_id);
+    $v_no=mysqli_real_escape_string($conn, $v_no);
+    $b_price=mysqli_real_escape_string($conn, $b_price);
+    $b_from=mysqli_real_escape_string($conn, $b_from);
+    $sql="INSERT INTO `bill` (p_id,a_id,v_no,b_price,b_from,b_till) VALUES('$p_id','$a_id','$v_no', TIMESTAMPDIFF(HOUR, '$b_from', NOW())*'$b_price','$b_from',NOW())";
+    if(mysqli_query($conn,$sql)){
+        echo "yay";
+    }
+
+    header('Location: customer.php');
+}
 
 /// getting details of all previous bills for customer
 // $_SESSION['c_id']="";
@@ -93,12 +124,13 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
         <td class="data"><?php echo htmlspecialchars($place['a_district']) ; ?></td>
         <td class="data"><?php echo htmlspecialchars($place['a_pincode']) ; ?></td>
         <form action="customer.php" method="post">
-        <td><input type="datetime-local" name="from" id=""></td>
-        <td><input type="datetime-local" name="till" id=""></td>
+        <td><input type="datetime-local" name="from" ></td>
+        <td><input type="datetime-local" name="till" ></td>
+
         <td><input type="text" name="v_no" ></td>
         <input type="hidden" name="p_id" value="<?php echo $place['p_id']; ?>">
-        <input type="hidden" name="a_id" value="<?php echo $place['a_id']; ?>">
-        <input type="hidden" name="b_price" value="<?php echo $place['p_price']; ?>">
+        <!-- <input type="hidden" name="a_id" value="<?php echo $place['a_id']; ?>"> -->
+        <!-- <input type="hidden" name="b_price" value="<?php echo $place['p_price']; ?>"> -->
         <td><input type="submit" name="confirm_park" value="confirm_park" ></td>
         </form>
     </tr>
@@ -134,12 +166,12 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
         <?php foreach($c_p_k as $k) {?>
             <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
         <?php } ?>
+        <td><a class="data" href="customer.php?LEAVE=<?php echo $place['p_id']; ?>">LEAVE</a></td>
     </tr>
     </div>
 </tbody>
 <?php  }  ?>
 </table>
-<h1>current parking locations</h1>
 </div>
 
 
