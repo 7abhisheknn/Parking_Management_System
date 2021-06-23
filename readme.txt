@@ -33,8 +33,4 @@ Hardware:
 
 
 
-todo:
-bill price in er diagram
-
-
 

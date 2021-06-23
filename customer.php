@@ -70,10 +70,7 @@ if(isset($_GET['LEAVE'])){
     $b_price=mysqli_real_escape_string($conn, $b_price);
     $b_from=mysqli_real_escape_string($conn, $b_from);
     $sql="INSERT INTO `bill` (p_id,a_id,v_no,b_price,b_from,b_till) VALUES('$p_id','$a_id','$v_no', TIMESTAMPDIFF(HOUR, '$b_from', NOW())*'$b_price','$b_from',NOW())";
-    if(mysqli_query($conn,$sql)){
-        echo "yay";
-    }
-
+    mysqli_query($conn,$sql);
     header('Location: customer.php');
 }
 
@@ -102,7 +99,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
     <tr>
         <th>Name</th>
         <th>Email</th>
-        <th>Price</th>
+        <th>Price per Hour</th>
         <th>Country</th>
         <th>State</th>
         <th>District</th>
@@ -114,7 +111,6 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
     </tr>
 </thead>
 <tbody>
-    <div class="centre_t">
     <tr>
         <td class="data"><?php echo htmlspecialchars($place['a_company_name']) ; ?></td>
         <td class="data"><?php echo htmlspecialchars($place['a_email']) ; ?></td>
@@ -134,7 +130,6 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
         <td><input type="submit" name="confirm_park" value="confirm_park" ></td>
         </form>
     </tr>
-    </div>
 </tbody>
 </table>
 </div>
@@ -149,7 +144,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
         <th>Vehicle No</th>
         <th>From</th>
         <th>Till</th>
-        <th>Price</th>
+        <th>Price per Hour</th>
         <th>Company Name</th>
         <th>Company Email</th>
         <th>Country</th>
@@ -161,14 +156,12 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 </thead>
 <tbody>
 <?php foreach ($current_places as $place) {?>
-    <div class="centre_t">
     <tr>
         <?php foreach($c_p_k as $k) {?>
             <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
         <?php } ?>
         <td><a class="data" href="customer.php?LEAVE=<?php echo $place['p_id']; ?>">LEAVE</a></td>
     </tr>
-    </div>
 </tbody>
 <?php  }  ?>
 </table>
@@ -186,7 +179,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
         <th>Vehicle No</th>
         <th>From</th>
         <th>Till</th>
-        <th>Price</th>
+        <th>Total Price</th>
         <th>Company Name</th>
         <th>Company Email</th>
         <th>Country</th>
@@ -198,13 +191,11 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 </thead>
 <tbody>
 <?php foreach ($bills as $bill) {?>
-    <div class="centre_t">
     <tr>
         <?php foreach($bill_k as $k) {?>
             <td class="data"><?php echo htmlspecialchars($bill[$k]) ; ?></td>
         <?php } ?>
     </tr>
-    </div>
 </tbody>
 <?php  }  ?>
 </table>

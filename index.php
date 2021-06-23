@@ -26,17 +26,16 @@ $place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_dis
     <tr>
         <th>Name</th>
         <th>Email</th>
-        <th>Price</th>
+        <th>Price per Hour</th>
         <th>Country</th>
         <th>State</th>
         <th>District</th>
         <th>Pincode</th>
-        <th>Park Here</th>
+        <th></th>
     </tr>
 </thead>
 <tbody>
 <?php foreach ($places as $place) {?>
-    <div class="centre_t">
     <tr>
         <?php
         foreach($place_k as $k){ ?>
@@ -44,7 +43,6 @@ $place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_dis
         <?php } ?>
         <td><a class="data" href="index.php?c_p_id=<?php echo $place['p_id']; ?>">PARK</a></td>
     </tr>
-    </div>
 <?php  }  ?>
 </tbody>
 </table>
