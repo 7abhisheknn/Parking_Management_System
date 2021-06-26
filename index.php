@@ -20,7 +20,15 @@ $place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_dis
 ?>
 
 <?php include('template/header.php'); ?>
+<title>Homepage: Easy Park</title>
+<div id="home">
+<h1 id="heading">EASY PARK</h1>
+<p class="text">Is finding parking spot difficult and clunky during urgency and peek hours ?</p>
+<p class="text">Guess What? We have made it Easy for you.</p>
+<a href="#content" class="hov submit_button park">Find a Parking near Me</a>
+</div>
 <section>
+<div id="content">
 <table class="centre_t">
 <thead>
     <tr>
@@ -46,6 +54,11 @@ $place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_dis
 <?php  }  ?>
 </tbody>
 </table>
-
+</div>
+<div id="bottom">
+<p class="para">The usual parking management techniques are very slow and clunky and this industry requires automation.Therefore, we have created a  project which  is a website with an easy user interface for direct parking recommendation and reservation based parking. Billing is shown to the user and Admin on their homepages. A user friendly front end and with efficient backend that updates the parking details in real time is a very useful solution for parking problems in crowded areas. This system has good potential and can be extended with further enhancements.</p>
+<p>Easy Park</p>
+<p>Parking Management System  -  A better way to manage and park our vehicles.</p>
+</div>
 </section>
 <?php include('template/footer.php'); ?>

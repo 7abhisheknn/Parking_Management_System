@@ -89,6 +89,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 
 
 <?php include('template/header.php'); ?>
+<title>Customer: Easy Park</title>
 <section>
 <h1>customer page</h1>
 
@@ -138,33 +139,37 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 
 <div>
 <h1>current parking locations</h1>
-<table class="centre_t">
-<thead>
-    <tr>
-        <th>Vehicle No</th>
-        <th>From</th>
-        <th>Till</th>
-        <th>Price per Hour</th>
-        <th>Company Name</th>
-        <th>Company Email</th>
-        <th>Country</th>
-        <th>State</th>
-        <th>District</th>
-        <th>Address</th>
-        <th>Pincode</th>
-    </tr>
-</thead>
-<tbody>
-<?php foreach ($current_places as $place) {?>
-    <tr>
-        <?php foreach($c_p_k as $k) {?>
-            <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
-        <?php } ?>
-        <td><a class="data" href="customer.php?LEAVE=<?php echo $place['p_id']; ?>">LEAVE</a></td>
-    </tr>
-</tbody>
-<?php  }  ?>
-</table>
+<?php if(!empty($current_places)){ ?>
+    <table class="centre_t">
+    <thead>
+        <tr>
+            <th>Vehicle No</th>
+            <th>From</th>
+            <th>Till</th>
+            <th>Price per Hour</th>
+            <th>Company Name</th>
+            <th>Company Email</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Address</th>
+            <th>Pincode</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($current_places as $place) {?>
+        <tr>
+            <?php foreach($c_p_k as $k) {?>
+                <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
+            <?php } ?>
+            <td><a class="data" href="customer.php?LEAVE=<?php echo $place['p_id']; ?>">LEAVE</a></td>
+        </tr>
+    </tbody>
+    <?php  }  ?>
+    </table>
+    <?php }else{ ?>
+<h4 class="centre_t">no current parking data found</h4>
+<?php } ?>
 </div>
 
 
@@ -200,7 +205,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 <?php  }  ?>
 </table>
 <?php } else { ?>
-<h3>no previous bill data found</h3>
+<h4>no previous bill data found</h4>
 <?php } ?>
 </div>
 

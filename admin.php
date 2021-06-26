@@ -66,10 +66,11 @@ $bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address')
 ?>
 
 <?php include('template/header.php'); ?>
+<title>Admin: Easy Park</title>
 <section>
 <h1>admin page</h1>
 
-<div>
+<div class="centre_t">
 <h2>Add place with price</h2>
 <form action="admin.php" method="post">
 <input type="number" name="price" >
@@ -81,60 +82,68 @@ $bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address')
 
 <div >
 <h1>parking locations</h1>
-<table class="centre_t">
-<thead>
-    <tr>
-        <th class="data" >Price per hour</th>
-        <th class="data" >From</th>
-        <th class="data" >Till</th>
-        <th class="data" >Vehicle No</th>
-    </tr>
-</thead>
-<tbody>
-<?php foreach ($places as $place) {?>
-    <tr>
-    <?php foreach($place_k as $k) { ?>
-        <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
-    <?php } ?>
-    <?php if (!empty($place['v_no'])){ ?>
-        <td><a class="data" href="admin.php?REMOVE=<?php echo $place['p_id']; ?>">REMOVE CUSTOMER</a></td>
-    <?php } else{ ?>
-        <td>not parked yet</td>
-    <?php } ?>
-    </tr>
-</tbody>
-<?php  }  ?>
-</table>
+<?php if(!empty($places)){ ?>
+    <table class="centre_t">
+    <thead>
+        <tr>
+            <th class="data" >Price per hour</th>
+            <th class="data" >From</th>
+            <th class="data" >Till</th>
+            <th class="data" >Vehicle No</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($places as $place) {?>
+        <tr>
+        <?php foreach($place_k as $k) { ?>
+            <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
+        <?php } ?>
+        <?php if (!empty($place['v_no'])){ ?>
+            <td><a class="data" href="admin.php?REMOVE=<?php echo $place['p_id']; ?>">REMOVE CUSTOMER</a></td>
+        <?php } else{ ?>
+            <td>not parked yet</td>
+        <?php } ?>
+        </tr>
+    </tbody>
+    <?php  }  ?>
+    </table>
+<?php }else{ ?>
+<h4 class="centre_t">no parking location data found</h4>
+<?php } ?>
 </div>
 
 
 
 <div >
 <h1>Previous Parking Bills</h1>
-<table class="centre_t">
-<thead>
-    <tr>
-        <th>Vehicle No</th>
-        <th>Total Price</th>
-        <th>From</th>
-        <th>Till</th>
-        <th>Customer Name</th>
-        <th>Customer Email</th>
-        <th>Customer Address</th>
+<?php if(!empty($bills)){ ?>
+    <table class="centre_t">
+    <thead>
+        <tr>
+            <th>Vehicle No</th>
+            <th>Total Price</th>
+            <th>From</th>
+            <th>Till</th>
+            <th>Customer Name</th>
+            <th>Customer Email</th>
+            <th>Customer Address</th>
 
-    </tr>
-</thead>
-<tbody>
-<?php foreach ($bills as $bill) {?>
-    <tr>
-    <?php foreach($bill_k as $k) { ?>
-        <td class="data"><?php echo htmlspecialchars($bill[$k]) ; ?></td>
-    <?php } ?>
-    
-    </tr>
-</tbody>
-<?php  }  ?>
-</table>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($bills as $bill) {?>
+        <tr>
+        <?php foreach($bill_k as $k) { ?>
+            <td class="data"><?php echo htmlspecialchars($bill[$k]) ; ?></td>
+        <?php } ?>
+        
+        </tr>
+    </tbody>
+    <?php  }  ?>
+    </table>
+    <?php }else{ ?>
+<h4 class="centre_t">no previous bill data found</h4>
+<?php } ?>
 </div>
 
 

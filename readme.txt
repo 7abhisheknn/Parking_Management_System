@@ -5,8 +5,7 @@ ABHISHEK N N  -  20BCE1025
 ANIKAIT SINGH  -  20BAI1030
 RITESH RAJPUT -  20BCE1750
 
- The usual parking management techniques are very slow and clunky and this industry requires automation.Therefore, we have created a  project which  is a website with an easy user interface for direct parking recommendation and reservation based parking. Billing is shown to the user and for transaction it is mailed to both customer and owner of the land. A user friendly front end and with efficient backend that updates the parking details in real time is a very useful solution for parking problems in crowded areas. This system has good potential and can be extended with further enhancements.
-
+ The usual parking management techniques are very slow and clunky and this industry requires automation.Therefore, we have created a  project which  is a website with an easy user interface for direct parking recommendation and reservation based parking. Billing is shown to the user and Admin on their homepages. A user friendly front end and with efficient backend that updates the parking details in real time is a very useful solution for parking problems in crowded areas. This system has good potential and can be extended with further enhancements.
 Modules = Customer, Billing, Parking Admin, Real time parking data (place)
 
 Software and Hardware Requirements

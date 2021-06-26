@@ -67,6 +67,8 @@ nav, footer{
 .centre_t{
     margin: auto;
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .data{
     padding: 0px 2px;
@@ -117,4 +119,39 @@ nav, footer{
     background-color: white;
 }
 
+#home{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding:3px 200px;
+    height: 650px;
+    justify-content: center;
+    align-items: center;
+    /* background-color: none; */
+    background: url('../img/parking_back.jpg') no-repeat center center/cover;
+}
 
+#heading {
+    font-size: 3.3rem;
+    margin: 20px
+}
+.text{
+    font-size: 1.5rem;
+}
+.park{
+    border: 2px solid red;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 5px;
+}
+#bottom{
+    display: grid;
+    grid-auto-flow: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.para{
+    width: 467px;
+    margin-bottom: 30px;
+}

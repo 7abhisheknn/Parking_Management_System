@@ -47,6 +47,7 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php include('template/header.php'); ?>
+<title>Create Customer: Easy Park</title>
 <section>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="centre_t form_grid" >
         <h1>Create Customer Account</h1>

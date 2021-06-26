@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php include('template/header.php'); ?>
-
+<title>Admin Login: Easy Park</title>
 <section>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="centre_t form_grid" >
         <h1>Admin Login</h1>
