@@ -25,7 +25,7 @@ $sql="SELECT p.p_id, p.p_price, p.p_from, p.p_till, p.v_no from place as p where
 $result=mysqli_query($conn,$sql);
 $places=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
-$place_k=array("p_price","p_from","p_till","v_no");
+$place_k=array("p_id","p_price","p_from","p_till","v_no");
 
 /// deleting parking data
 if(isset($_GET['REMOVE'])){
@@ -53,14 +53,14 @@ if(isset($_GET['REMOVE'])){
 }
 
 /// getting details of all previous bills for admin
-$sql="SELECT b.v_no, b.b_price,b.b_from, b.b_till,c.c_name,c.c_email,c.c_address FROM place as p, admin as a, bill as b, customer as c, vehicle as v WHERE b.p_id=p.p_id AND b.a_id=a.a_id AND b.v_no=v.v_no AND v.c_id=c.c_id AND b.a_id='$a_id'";
+$sql="SELECT b.v_no, b.b_price,b.b_from, b.b_till,c.c_name,c.c_email,c.c_address,b.p_id FROM place as p, admin as a, bill as b, customer as c, vehicle as v WHERE b.p_id=p.p_id AND b.a_id=a.a_id AND b.v_no=v.v_no AND v.c_id=c.c_id AND b.a_id='$a_id'";
 $result=mysqli_query($conn,$sql);
 $bills=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
 
 /// array to store data heading for in each bill
-$bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address');
+$bill_k=array('p_id','v_no','b_price','b_from','b_till','c_name','c_email','c_address');
 
 
 ?>
@@ -69,7 +69,7 @@ $bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address')
 <title>Admin: Easy Park</title>
 <section>
 <h1>admin page</h1>
-
+<h3><a href="admin_edit.php">Edit Info</a></h3>
 <div class="centre_t">
 <h2>Add place with price</h2>
 <form action="admin.php" method="post">
@@ -86,6 +86,7 @@ $bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address')
     <table class="centre_t">
     <thead>
         <tr>
+            <th class="data" >Place Id</th>
             <th class="data" >Price per hour</th>
             <th class="data" >From</th>
             <th class="data" >Till</th>
@@ -120,6 +121,7 @@ $bill_k=array('v_no','b_price','b_from','b_till','c_name','c_email','c_address')
     <table class="centre_t">
     <thead>
         <tr>
+            <th>Place Id</th>
             <th>Vehicle No</th>
             <th>Total Price</th>
             <th>From</th>

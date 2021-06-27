@@ -32,7 +32,7 @@ if(isset($_POST['confirm_park'])){
 /// if parking id present getting the details of congfirm park location
 $place="";
 if(!empty($_SESSION['c_p_id'])){
-    echo $_SESSION['c_p_id'];
+    // echo $_SESSION['c_p_id'];
     $p_id = mysqli_real_escape_string($conn, $_SESSION['c_p_id']);
     $sql="SELECT p.p_id, p.a_id, p.p_price, p.p_from, p.p_till, p.v_no, a.a_email, a.a_name, a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a WHERE p.a_id=a.a_id AND p.p_id='$p_id' AND p.v_no IS NULL ";
     // AND p.v_no IS NULL not need 
@@ -46,7 +46,7 @@ $sql="SELECT p.p_id,p.v_no,p.p_from, p.p_till, p.p_price,a.a_id,a.a_company_name
 $result=mysqli_query($conn,$sql);
 $current_places=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
-$c_p_k=array('v_no','p_from','p_till','p_price','a_company_name','a_email','a_country','a_state','a_district','a_address','a_pincode');
+$c_p_k=array('p_id','v_no','p_from','p_till','p_price','a_company_name','a_email','a_country','a_state','a_district','a_address','a_pincode');
 
 ///If leave parking place clicked
 if(isset($_GET['LEAVE'])){
@@ -78,12 +78,12 @@ if(isset($_GET['LEAVE'])){
 // $_SESSION['c_id']="";
 // echo $c_id;
 // $c_id="!=NULL";
-$sql="SELECT b.v_no,b.b_from, b.b_till, b.b_price,a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a, bill as b, customer as c, vehicle as v WHERE b.p_id=p.p_id AND b.a_id=a.a_id AND b.v_no=v.v_no AND v.c_id=c.c_id AND v.c_id=$c_id";
+$sql="SELECT b.p_id,b.v_no,b.b_from, b.b_till, b.b_price,a.a_company_name,a.a_email, a.a_country, a.a_state, a.a_district, a.a_address, a.a_pincode FROM place as p, admin as a, bill as b, customer as c, vehicle as v WHERE b.p_id=p.p_id AND b.a_id=a.a_id AND b.v_no=v.v_no AND v.c_id=c.c_id AND v.c_id=$c_id";
 $result=mysqli_query($conn,$sql);
 $bills=mysqli_fetch_all($result,MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
-$bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_country','a_state','a_district','a_address','a_pincode');
+$bill_k=array('p_id','v_no','b_from','b_till','b_price','a_company_name','a_email','a_country','a_state','a_district','a_address','a_pincode');
 
 ?>
 
@@ -92,12 +92,14 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 <title>Customer: Easy Park</title>
 <section>
 <h1>customer page</h1>
+<h3><a href="customer_edit.php">Edit Info and Vehicles</a></h3>
 
 <?php if (!empty($place)){?>
 <div><h1>confirm parking</h1>
 <table class="centre_t">
 <thead>
     <tr>
+        <th>Place Id</th>
         <th>Name</th>
         <th>Email</th>
         <th>Price per Hour</th>
@@ -113,6 +115,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 </thead>
 <tbody>
     <tr>
+        <td class="data"><?php echo htmlspecialchars($place['p_id']) ; ?></td>
         <td class="data"><?php echo htmlspecialchars($place['a_company_name']) ; ?></td>
         <td class="data"><?php echo htmlspecialchars($place['a_email']) ; ?></td>
         <td class="data"><?php echo htmlspecialchars($place['p_price']) ; ?></td>
@@ -143,6 +146,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
     <table class="centre_t">
     <thead>
         <tr>
+            <th>Place Id</th>
             <th>Vehicle No</th>
             <th>From</th>
             <th>Till</th>
@@ -181,6 +185,7 @@ $bill_k=array('v_no','b_from','b_till','b_price','a_company_name','a_email','a_c
 <table class="centre_t">
 <thead>
     <tr>
+        <th>Place Id</th>
         <th>Vehicle No</th>
         <th>From</th>
         <th>Till</th>

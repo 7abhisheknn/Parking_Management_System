@@ -16,7 +16,7 @@ mysqli_free_result($result);
 mysqli_close($conn);
 
 /// array to store data heading for in each place
-$place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_district','a_pincode')
+$place_k=array('p_id','a_company_name','a_email','p_price','a_country','a_state','a_district','a_pincode')
 ?>
 
 <?php include('template/header.php'); ?>
@@ -32,6 +32,7 @@ $place_k=array('a_company_name','a_email','p_price','a_country','a_state','a_dis
 <table class="centre_t">
 <thead>
     <tr>
+        <th>Place Id</th>
         <th>Name</th>
         <th>Email</th>
         <th>Price per Hour</th>
