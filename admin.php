@@ -13,7 +13,7 @@ if(isset($_POST['price_submit'])){
     $p_price=mysqli_real_escape_string($conn, $_POST['price']);
     $sql="INSERT INTO `place` (`a_id`,`p_price`,`p_from`,`p_till`,`v_no`) VALUES('$a_id','$p_price',NULL,NULL,NULL)";
     if (mysqli_query($conn,$sql)){
-        echo "ysy";
+        header('Location: admin.php');
     } else {
         echo 'query error: '. mysqli_error($conn);
     }

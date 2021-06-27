@@ -92,7 +92,7 @@ $bill_k=array('p_id','v_no','b_from','b_till','b_price','a_company_name','a_emai
 <title>Customer: Easy Park</title>
 <section>
 <h1>customer page</h1>
-<h3><a href="customer_edit.php">Edit Info and Vehicles</a></h3>
+<h3><a href="customer_edit.php">Edit Info</a></h3>
 
 <?php if (!empty($place)){?>
 <div><h1>confirm parking</h1>
