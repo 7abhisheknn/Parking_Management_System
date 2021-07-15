@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
         <div class="error"><?php  echo htmlspecialchars($error['password']); ?></div>
         <div class="button_div">
             <input class="hov submit_button" type="submit" value="submit" name="submit">
-            <a class="hov submit_button" href="customer_create.php" class="submit_button">Create Account</a>
+            <a class="hov submit_button" href="customer_create.php" class="submit_button">Sign Up</a>
         </div>
     </form>
 </section>

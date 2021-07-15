@@ -69,12 +69,12 @@ $bill_k=array('p_id','v_no','b_price','b_from','b_till','c_name','c_email','c_ad
 <title>Admin: Easy Park</title>
 <section>
 <h1>admin page</h1>
-<h3><a href="admin_edit.php">Edit Info</a></h3>
+<h3><a class="click hov" href="admin_edit.php">Edit Info</a></h3>
 <div class="centre_t">
 <h2>Add place with price</h2>
 <form action="admin.php" method="post">
 <input type="number" name="price" >
-<input type="submit" value="Add place" name="price_submit">
+<input class="click hov" type="submit" value="Add place" name="price_submit">
 </form>
 </div>
 
@@ -100,7 +100,7 @@ $bill_k=array('p_id','v_no','b_price','b_from','b_till','c_name','c_email','c_ad
             <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
         <?php } ?>
         <?php if (!empty($place['v_no'])){ ?>
-            <td><a class="data" href="admin.php?REMOVE=<?php echo $place['p_id']; ?>">REMOVE CUSTOMER</a></td>
+            <td><a class="data click hov" href="admin.php?REMOVE=<?php echo $place['p_id']; ?>">REMOVE CUSTOMER</a></td>
         <?php } else{ ?>
             <td>not parked yet</td>
         <?php } ?>

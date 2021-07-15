@@ -156,6 +156,7 @@ nav, footer{
     margin-bottom: 30px;
 }
 
+
 /*///////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .hov:hover{
@@ -333,4 +334,7 @@ input[name="price"]{
 }
 
 
-
+.click{
+    padding: 5px 20px;
+    text-decoration: none;
+}

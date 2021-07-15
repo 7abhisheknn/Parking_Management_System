@@ -92,7 +92,7 @@ $bill_k=array('p_id','v_no','b_from','b_till','b_price','a_company_name','a_emai
 <title>Customer: Easy Park</title>
 <section>
 <h1>customer page</h1>
-<h3><a href="customer_edit.php">Edit Info</a></h3>
+<h3><a class="click hov" href="customer_edit.php">Edit Info</a></h3>
 
 <?php if (!empty($place)){?>
 <div><h1>confirm parking</h1>
@@ -131,7 +131,7 @@ $bill_k=array('p_id','v_no','b_from','b_till','b_price','a_company_name','a_emai
         <input type="hidden" name="p_id" value="<?php echo $place['p_id']; ?>">
         <!-- <input type="hidden" name="a_id" value="<?php echo $place['a_id']; ?>"> -->
         <!-- <input type="hidden" name="b_price" value="<?php echo $place['p_price']; ?>"> -->
-        <td><input type="submit" name="confirm_park" value="confirm_park" ></td>
+        <td><input class="click hov" type="submit" name="confirm_park" value="confirm_park" ></td>
         </form>
     </tr>
 </tbody>
@@ -166,7 +166,7 @@ $bill_k=array('p_id','v_no','b_from','b_till','b_price','a_company_name','a_emai
             <?php foreach($c_p_k as $k) {?>
                 <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
             <?php } ?>
-            <td><a class="data" href="customer.php?LEAVE=<?php echo $place['p_id']; ?>">LEAVE</a></td>
+            <td><a class="data click hov" href="customer.php?LEAVE=<?php echo $place['p_id']; ?>">LEAVE</a></td>
         </tr>
     </tbody>
     <?php  }  ?>

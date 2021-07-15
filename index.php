@@ -75,9 +75,9 @@ mysqli_close($conn);
             </select>
         </td>
     <?php } ?>
-    <td><input type="submit" value="Go" name="Go"></td>
+    <td><input class="click hov" type="submit" value="Go" name="Go"></td>
     </form>
-    <td><a href="index.php">reset</a></td>
+    <td><a class="click hov" href="index.php">Reset</a></td>
     </tr>
 <?php foreach ($places as $place) {?>
     <tr>
@@ -85,7 +85,7 @@ mysqli_close($conn);
         foreach($place_k as $k){ ?>
             <td class="data"><?php echo htmlspecialchars($place[$k]) ; ?></td>
         <?php } ?>
-        <td><a class="data" href="index.php?c_p_id=<?php echo $place['p_id']; ?>">PARK</a></td>
+        <td><a class="data click hov" href="index.php?c_p_id=<?php echo $place['p_id']; ?>">PARK</a></td>
     </tr>
 <?php  }  ?>
 </tbody>
